@@ -20,8 +20,8 @@ Events are published on a background thread, using an `ExecutorService`, backed 
 This has a few important implications:
 
 * Thread safety
-** You need to be careful about making sure that whatever you're using this for is thread safe
+  * You need to be careful about making sure that whatever you're using this for is thread safe
 * UI/Main thread
-** Events will be posted to background threads
+  * Events will be posted to background threads
 * Out of order
-** Events are handled in parallel, so it is possible for them to come in out of order
+  * Events are handled in parallel, so it is possible for them to come in out of order
