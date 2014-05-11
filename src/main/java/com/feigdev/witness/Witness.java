@@ -16,18 +16,18 @@ public class Witness {
         if (null == event || null == reporter)
             return;
 
-        events.putIfAbsent(event.getClass(), new ConcurrentHashMap<Reporter, String>());
-        events.get(event.getClass()).putIfAbsent(reporter, "");
+        events.putIfAbsent(event, new ConcurrentHashMap<Reporter, String>());
+        events.get(event).putIfAbsent(reporter, "");
     }
 
     public static void remove(Class<?> event, Reporter reporter) {
         if (null == event || null == reporter)
             return;
 
-        if (!events.containsKey(event.getClass()))
+        if (!events.containsKey(event))
             return;
 
-        events.get(event.getClass()).remove(reporter);
+        events.get(event).remove(reporter);
     }
 
     public static void notify(final Object event) {
