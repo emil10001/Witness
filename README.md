@@ -12,6 +12,11 @@ interface, then register for whatever data types the following way:
     Witness.register(EventTypeOne.class, this);
     Witness.register(EventTypeTwo.class, this);
 
+When you're done listening, unregister with the following:
+
+    Witness.remove(EventTypeOne.class, this);
+    Witness.remove(EventTypeTwo.class, this);
+
 To publish events to listeners:
 
     Witness.notify(event);
@@ -22,6 +27,6 @@ This has a few important implications:
 * Thread safety
   * You need to be careful about making sure that whatever you're using this for is thread safe
 * UI/Main thread
-  * Events will be posted to background threads
+  * All events will be posted to background threads
 * Out of order
   * Events are handled in parallel, so it is possible for them to come in out of order
