@@ -30,7 +30,7 @@ public class Witness {
         events.get(event.getClass()).remove(reporter);
     }
 
-    public static void notify(final Class<?> event) {
+    public static void notify(final Object event) {
         if (null == event)
             return;
 
