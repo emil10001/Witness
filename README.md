@@ -21,6 +21,39 @@ To publish events to listeners:
 
     Witness.notify(event);
 
+Handling events in the `Reporter`:
+
+    @Override
+    public void notifyEvent(Object o) {
+        if (null == o)
+            return;
+        if (o instanceof SomeObject) {
+            objectHandlingMethod(((SomeObject) o));
+        }
+    }
+
+Android, if you need code run on the main thread, in an Activity or Service:
+
+    public class MyActivity extends Activity implements Reporter {
+        private Handler handler = new Handler();
+    
+        // ...
+    
+        @Override
+        public void notifyEvent(final Object o) {
+            if (null == o)
+                return;
+            if (o instanceof SomeObject) {
+                handler.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        objectHandlingMethod(((SomeObject) o));
+                    }
+                });
+            }
+        }
+    }
+
 Events are published on a background thread, using an `ExecutorService`, backed by a `BlockingQueue`.
 This has a few important implications:
 
