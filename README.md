@@ -25,8 +25,6 @@ Handling events in the `Reporter`:
 
     @Override
     public void notifyEvent(Object o) {
-        if (null == o)
-            return;
         if (o instanceof SomeObject) {
             objectHandlingMethod(((SomeObject) o));
         }
@@ -41,8 +39,6 @@ Android, if you need code run on the main thread, in an Activity or Service:
     
         @Override
         public void notifyEvent(final Object o) {
-            if (null == o)
-                return;
             if (o instanceof SomeObject) {
                 handler.post(new Runnable() {
                     @Override
