@@ -59,3 +59,11 @@ This has a few important implications:
   * All events will be posted to background threads
 * Out of order
   * Events are handled in parallel, so it is possible for them to come in out of order
+
+### Note
+
+[+Dietrich Schulten](https://plus.google.com/u/0/115844465204731828022) had the following [comment](https://plus.google.com/u/0/+EJohnFeig/posts/eqprQafTTLc):
+
+> It has the effect that events can be delivered on arbitrary threads. The event handler must be threadsafe, must synchronize access to shared or stateful resources, and be careful not to create deadlocks. Otoh if you use a single event queue, you avoid this kind of complexity in the first place. I'd opt for the latter, threadsafe programming is something you want to avoid if you can.﻿
+
+I should note that my usage is all on Android, where I'm explicitly specifying the thread that the events will run on using `Handler`s. I haven't used this in a non-Android environment, and I'm not entirely sure how to implement the equivalent behavior for regular Java.
