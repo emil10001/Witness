@@ -30,7 +30,7 @@ Handling events in the `Reporter`:
         }
     }
 
-Android, if you need code run on the main thread, in an Activity or Service:
+Android, it is a good idea to use a handler, to force the event handling to run on the thread you expect. E.g., if you need code run on the main thread, in an Activity or Service:
 
     public class MyActivity extends Activity implements Reporter {
         private Handler handler = new Handler();
@@ -39,14 +39,14 @@ Android, if you need code run on the main thread, in an Activity or Service:
     
         @Override
         public void notifyEvent(final Object o) {
-            if (o instanceof SomeObject) {
-                handler.post(new Runnable() {
-                    @Override
-                    public void run() {
+            handler.post(new Runnable() {
+                @Override
+                public void run() {
+                    if (o instanceof SomeObject) {
                         objectHandlingMethod(((SomeObject) o));
                     }
-                });
-            }
+                }
+            });
         }
     }
 
