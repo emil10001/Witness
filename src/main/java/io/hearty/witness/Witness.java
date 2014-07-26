@@ -1,4 +1,4 @@
-package com.feigdev.witness;
+package io.hearty.witness;
 
 import java.util.concurrent.*;
 

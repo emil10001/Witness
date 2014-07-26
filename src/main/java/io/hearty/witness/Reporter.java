@@ -1,4 +1,4 @@
-package com.feigdev.witness;
+package io.hearty.witness;
 
 /**
  * Created by ejf3 on 5/10/14.
